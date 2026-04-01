@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://example.com/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://example.com/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://example.com/en/"/>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://example.com/about</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://example.com/about"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://example.com/en/about"/>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://example.com/projects/example</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://example.com/projects/example"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://example.com/en/projects/example"/>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://example.com/en/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://example.com/en/"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://example.com/"/>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://example.com/en/about</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://example.com/en/about"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://example.com/about"/>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://example.com/en/projects/example</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://example.com/en/projects/example"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://example.com/projects/example"/>
+    <priority>0.9</priority>
+  </url>
+</urlset>

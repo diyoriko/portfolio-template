@@ -49,11 +49,14 @@ replace_all() {
 replace_all "example.com" "$DOMAIN"
 replace_all "https://example.com" "https://$DOMAIN"
 
-# Name
+# Name (replace EN first, then if RU differs, replace in RU-specific files)
 replace_all "Jane Smith" "$NAME"
-if [ "$NAME" != "$NAME_RU" ]; then
-  # Only replace Russian-specific contexts if names differ
-  echo "Note: Update Russian name manually in about.html if needed."
+if [ "$NAME_RU" != "$NAME" ]; then
+  # Replace name in Russian pages with RU name
+  find . -type f \( -name "*.html" -o -name "*.js" \) \
+    -not -path "./en/*" -not -path "./.git/*" \
+    -exec sed -i '' "s|${NAME}|${NAME_RU}|g" {} +
+  echo "  ✓ Russian name applied"
 fi
 
 # Job title

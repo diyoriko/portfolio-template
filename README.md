@@ -142,6 +142,16 @@ Or use local font files:
 2. Add `@font-face` declarations to `styles.css`
 3. Remove the Google Fonts `<link>` from HTML files
 
+### Project Sections
+
+The home page has three sections:
+
+- **Selected projects** — main work with thumbnails
+- **Pet projects** — side projects, experiments
+- **Archive** — older work, no thumbnails
+
+To remove a section, delete its `<h2>` and `<div class="project-list">` block.
+
 ### Adding Projects
 
 1. Duplicate `projects/example.html` (and `en/projects/example.html`)
@@ -149,7 +159,7 @@ Or use local font files:
 3. Add a project card to `index.html` (and `en/index.html`)
 4. Add the URL to `sitemap.xml`
 
-### Case Study Sections
+### Case Study Components
 
 Case studies use a consistent structure:
 
@@ -161,7 +171,33 @@ Case studies use a consistent structure:
 </section>
 ```
 
-Available components: `.case-stats`, `.case-img-full`, `.case-img-row`, `.case-quote`, `.case-separator`, `.case-nav`.
+Available components:
+
+| Component | Usage |
+|---|---|
+| `.case-stats` | Key metrics grid (duration, role, team) |
+| `.case-img-full` | Full-width image |
+| `.case-img-row` | Two images side by side |
+| `.case-caption` | Caption text below image |
+| `.case-quote` | Blockquote with citation |
+| `.case-separator` | Horizontal divider |
+| `.case-nav` | Previous/next project links |
+
+Example with caption:
+
+```html
+<img class="case-img-full" src="../assets/img/screen.png" alt="Description">
+<div class="case-caption">Caption text under the image</div>
+```
+
+Example quote:
+
+```html
+<blockquote class="case-quote">
+  "Quote text here."
+  <cite>— Author Name, Role</cite>
+</blockquote>
+```
 
 ### Spacing
 

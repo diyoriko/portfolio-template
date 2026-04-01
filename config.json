@@ -12,6 +12,5 @@
   "goatcounter": "YOURSITE",
   "location": "Working remotely",
   "location_ru": "Работаю удалённо",
-  "accent_color": "#F8401C",
-  "og_image": "assets/img/og-image.png"
+  "accent_color": "#F8401C"
 }

@@ -76,8 +76,8 @@ fi
 replace_all "YOURSITE.goatcounter.com" "${GOATCOUNTER}.goatcounter.com"
 
 # Location
-replace_all "Working remotely." "$LOCATION."
-replace_all "Работаю удалённо." "$LOCATION_RU."
+replace_all "Working remotely" "$LOCATION"
+replace_all "Работаю удалённо" "$LOCATION_RU"
 
 # CNAME
 echo "$DOMAIN" > CNAME

@@ -19,32 +19,48 @@ A clean, minimal, bilingual (RU/EN) portfolio template for designers. Based on [
 - **GoatCounter analytics** — privacy-friendly, cookie-free
 - **SEO ready** — meta tags, Open Graph, structured data, sitemap
 - **Print stylesheet** — clean printable version of the about page
-- **Accessible** — ARIA attributes, keyboard navigation, reduced motion support
+- **Dark mode** — automatic, follows system preference (`prefers-color-scheme`)
+- **Accessible** — ARIA attributes, keyboard focus styles, reduced motion support
 - **GitHub Pages ready** — just push to main
 
 ## Quick Start
 
+### 1. Get the template
+
+Click **[Use this template](https://github.com/diyoriko/portfolio-template/generate)** on GitHub, or:
+
 ```bash
-# 1. Clone the template
 git clone https://github.com/YOUR_USERNAME/portfolio-template.git my-portfolio
 cd my-portfolio
-
-# 2. Run the setup script
-chmod +x setup.sh
-./setup.sh
-
-# 3. Open in browser
-open index.html
-
-# 4. Deploy to GitHub Pages
-git init
-git add .
-git commit -m "Initial portfolio"
-git remote add origin https://github.com/YOUR_USERNAME/YOUR_USERNAME.github.io.git
-git push -u origin main
 ```
 
-Then go to **Settings > Pages** and set source to `main` branch.
+### 2. Run setup
+
+```bash
+chmod +x setup.sh
+./setup.sh
+```
+
+The script will ask for your name, domain, email, socials, and location. It then:
+- Replaces all placeholder values across every file
+- Generates a favicon with your initial
+- Updates CNAME, sitemap, config.json
+
+### 3. Add your content
+
+- Replace case studies in `projects/` and `en/projects/`
+- Replace images in `assets/img/`
+- Update bio in `about.html` and `en/about.html`
+
+### 4. Deploy
+
+```bash
+git add .
+git commit -m "my portfolio"
+git push origin main
+```
+
+Go to **Settings → Pages** → set source to `main`.
 
 ## One-Click Deploy
 
@@ -103,6 +119,14 @@ Edit CSS variables in `styles.css`:
 Also update the accent color in:
 - `favicon.svg` — the circle fill color
 - `script.js` — terminal cursor color and hover effects (search for `#F8401C`)
+
+### Dark Mode
+
+Dark mode activates automatically based on the user's system preference (`prefers-color-scheme: dark`). No toggle button — it just works.
+
+To customize dark mode colors, edit the `@media (prefers-color-scheme: dark)` block in `styles.css`.
+
+To disable dark mode entirely, remove that media query block.
 
 ### Fonts
 

@@ -89,11 +89,17 @@ Edit CSS variables in `styles.css`:
 
 ### Fonts
 
-The template uses system fonts by default. To use custom fonts:
+The template uses [Inter](https://fonts.google.com/specimen/Inter) + [DM Mono](https://fonts.google.com/specimen/DM+Mono) from Google Fonts. To change:
 
-1. Add your font files to `assets/fonts/`
+1. Pick fonts at [fonts.google.com](https://fonts.google.com)
+2. Replace the `<link href="https://fonts.googleapis.com/...">` in all HTML files
+3. Update `--font-sans` and `--font-mono` in `styles.css`
+
+Or use local font files:
+
+1. Add `.woff2` files to `assets/fonts/`
 2. Add `@font-face` declarations to `styles.css`
-3. Update `--font-sans` and `--font-mono` variables
+3. Remove the Google Fonts `<link>` from HTML files
 
 ### Adding Projects
 

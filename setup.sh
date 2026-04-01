@@ -17,18 +17,34 @@ echo ""
 
 # --- Collect info ---
 
-read -rp "Your name (e.g. Alex Johnson): " NAME
-read -rp "Your name in Russian (or same if N/A): " NAME_RU
-read -rp "Your job title in English (e.g. Product Designer): " JOB
-read -rp "Your job title in Russian (e.g. Продуктовый дизайнер): " JOB_RU
-read -rp "Your domain (e.g. alexjohnson.design): " DOMAIN
-read -rp "Your email: " EMAIL
-read -rp "Telegram username (without @): " TELEGRAM
-read -rp "Instagram username: " INSTAGRAM
-read -rp "LinkedIn username: " LINKEDIN
-read -rp "GoatCounter subdomain (e.g. alexj): " GOATCOUNTER
-read -rp "Location in English (e.g. Based in Berlin): " LOCATION
-read -rp "Location in Russian (e.g. Живу в Берлине): " LOCATION_RU
+ask() {
+  local prompt="$1"
+  local default="$2"
+  local result=""
+  while [ -z "$result" ]; do
+    read -rp "$prompt" result
+    if [ -z "$result" ] && [ -n "$default" ]; then
+      result="$default"
+      echo "  Using default: $result"
+    elif [ -z "$result" ]; then
+      echo "  This field is required. Please try again."
+    fi
+  done
+  echo "$result"
+}
+
+NAME=$(ask "Your name (e.g. Alex Johnson): " "")
+NAME_RU=$(ask "Your name in Russian (or same if N/A): " "$NAME")
+JOB=$(ask "Your job title in English (e.g. Product Designer): " "Product Designer")
+JOB_RU=$(ask "Your job title in Russian (e.g. Продуктовый дизайнер): " "Продуктовый дизайнер")
+DOMAIN=$(ask "Your domain (e.g. alexjohnson.design): " "")
+EMAIL=$(ask "Your email: " "")
+TELEGRAM=$(ask "Telegram username (without @): " "")
+INSTAGRAM=$(ask "Instagram username: " "$TELEGRAM")
+LINKEDIN=$(ask "LinkedIn username: " "$TELEGRAM")
+GOATCOUNTER=$(ask "GoatCounter subdomain (e.g. alexj): " "")
+LOCATION=$(ask "Location in English (e.g. Based in Berlin): " "Working remotely")
+LOCATION_RU=$(ask "Location in Russian (e.g. Живу в Берлине): " "Работаю удалённо")
 
 echo ""
 echo "Applying changes..."
@@ -37,10 +53,12 @@ echo "Applying changes..."
 replace_all() {
   local old="$1"
   local new="$2"
+  local escaped_old=$(printf '%s\n' "$old" | sed -e 's/[]\/$*.^[]/\\&/g')
+  local escaped_new=$(printf '%s\n' "$new" | sed -e 's/[\/&]/\\&/g')
   find . -type f \( -name "*.html" -o -name "*.css" -o -name "*.js" -o -name "*.json" -o -name "*.xml" -o -name "*.txt" -o -name "CNAME" \) \
     -not -path "./.git/*" \
     -not -path "./node_modules/*" \
-    -exec sed -i '' "s|${old}|${new}|g" {} +
+    -exec sed -i '' "s|${escaped_old}|${escaped_new}|g" {} +
 }
 
 # --- Apply replacements ---
@@ -84,6 +102,16 @@ replace_all "Работаю удалённо" "$LOCATION_RU"
 
 # CNAME
 echo "$DOMAIN" > CNAME
+
+# Update favicon with first letter of name
+INITIAL=$(echo "$NAME" | cut -c1 | tr '[:lower:]' '[:upper:]')
+cat > favicon.svg << FAVICON
+<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48">
+  <circle cx="24" cy="24" r="22" fill="#F8401C"/>
+  <text x="24" y="32" text-anchor="middle" font-family="system-ui, sans-serif" font-size="24" font-weight="600" fill="white">${INITIAL}</text>
+</svg>
+FAVICON
+echo "  ✓ Favicon updated with initial: $INITIAL"
 
 # Update config.json with actual values
 cat > config.json << EOF

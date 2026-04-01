@@ -26,49 +26,6 @@ function initScrollReveal() {
   });
 }
 
-/* --- Case Tabs --- */
-
-function initCaseTabs() {
-  const tabs = document.querySelectorAll('.case-tab');
-  if (!tabs.length) return;
-
-  tabs.forEach((tab) => {
-    tab.addEventListener('click', () => activateTab(tab));
-
-    tab.addEventListener('keydown', (e) => {
-      const allTabs = Array.from(tab.closest('[role="tablist"]').querySelectorAll('[role="tab"]'));
-      const idx = allTabs.indexOf(tab);
-      let next;
-      if (e.key === 'ArrowRight') next = allTabs[(idx + 1) % allTabs.length];
-      else if (e.key === 'ArrowLeft') next = allTabs[(idx - 1 + allTabs.length) % allTabs.length];
-      if (next) { e.preventDefault(); next.focus(); next.click(); }
-    });
-  });
-
-  function activateTab(tab) {
-    const targetId = tab.getAttribute('data-tab');
-    const container = tab.closest('main');
-
-    container.querySelectorAll('.case-tab').forEach((t) => {
-      t.classList.remove('active');
-      t.setAttribute('aria-selected', 'false');
-      t.setAttribute('tabindex', '-1');
-    });
-    container.querySelectorAll('.case-tab-panel').forEach((p) => p.classList.remove('active'));
-
-    tab.classList.add('active');
-    tab.setAttribute('aria-selected', 'true');
-    tab.setAttribute('tabindex', '0');
-    const panel = container.querySelector(`.case-tab-panel[data-panel="${targetId}"]`);
-    if (panel) {
-      panel.classList.add('active');
-      panel.querySelectorAll('.reveal:not(.visible)').forEach((el) => {
-        if (observer) observer.observe(el);
-      });
-    }
-  }
-}
-
 /* --- External links inside project cards (stop bubbling to parent <a>) --- */
 
 function initProjectLinks() {
@@ -554,7 +511,7 @@ function initDesignSystemToggle() {
     const root = getComputedStyle(document.documentElement);
     const bg = root.getPropertyValue('--bg').trim();
     const accent = root.getPropertyValue('--accent').trim();
-    const text = root.getPropertyValue('--text-body').trim();
+    const text = root.getPropertyValue('--text').trim();
     const dim = root.getPropertyValue('--text-dim').trim();
     const font = root.getPropertyValue('--font-sans').trim().split(',')[0].replace(/'/g, '');
     const mono = root.getPropertyValue('--font-mono').trim().split(',')[0].replace(/'/g, '');
@@ -727,7 +684,6 @@ function initSkeletonCleanup() {
 document.addEventListener('DOMContentLoaded', () => {
   initNavScrollLine();
   initScrollReveal();
-  initCaseTabs();
   initProjectLinks();
   initLightbox();
   initBurger();

@@ -162,6 +162,7 @@ button {
 }
 
 .nav-links a:hover,
+.nav-links a:focus-visible,
 .nav-links a.active {
   color: var(--accent);
 }
@@ -179,7 +180,8 @@ button {
   transition: color var(--transition-fast);
 }
 
-.nav-lang a:hover {
+.nav-lang a:hover,
+.nav-lang a:focus-visible {
   color: var(--accent);
 }
 
@@ -277,6 +279,7 @@ button {
 }
 
 .nav-mobile a:hover,
+.nav-mobile a:focus-visible,
 .nav-mobile a.active {
   color: var(--accent);
 }
@@ -541,7 +544,8 @@ a.project-item .project-arrow {
   transition: color var(--transition-fast);
 }
 
-.about-links a:hover {
+.about-links a:hover,
+.about-links a:focus-visible {
   text-decoration: none;
 }
 
@@ -962,8 +966,33 @@ picture.case-img-full {
 
 /* --- Dark mode --- */
 
+/* Theme toggle button */
+.theme-toggle {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  margin-right: 32px;
+  font-size: 20px;
+  line-height: 1;
+  color: var(--text);
+  opacity: 0.4;
+  transition: opacity var(--transition-fast);
+}
+
+.theme-toggle:hover {
+  opacity: 1;
+}
+
+.theme-toggle .icon-sun { display: none; }
+.theme-toggle .icon-moon { display: block; }
+
+html.dark .theme-toggle .icon-sun { display: block; }
+html.dark .theme-toggle .icon-moon { display: none; }
+
+/* Auto dark (system preference, unless user chose light) */
 @media (prefers-color-scheme: dark) {
-  :root {
+  :root:not(.light) {
     --bg: #1a1a1a;
     --text: #e0e0e0;
     --text-dim: #888888;
@@ -974,66 +1003,63 @@ picture.case-img-full {
     --selection-color: #fff;
   }
 
-  /* Nav */
-  .nav {
-    background: rgba(26, 26, 26, 0.85);
-  }
+  :root:not(.light) .theme-toggle .icon-sun { display: block; }
+  :root:not(.light) .theme-toggle .icon-moon { display: none; }
 
-  .nav::after {
-    background: rgba(255, 255, 255, 0.08);
-  }
-
-  /* Footer */
-  .about-bottom {
-    background: rgba(26, 26, 26, 0.85);
-  }
-
-  /* Project thumbnails: subtle border in dark mode */
-  .project-thumb {
-    box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.08);
-  }
-
-  /* Image box-shadows */
-  .case-img-full,
-  .case-body > picture img,
-  .case-tab-panel > picture img,
-  .case-img-row img {
-    box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.06);
-  }
-
-  /* Lightbox */
-  .case-lightbox {
-    background: rgba(0, 0, 0, 0.95);
-  }
-
-  /* Mac browser mockup */
-  .mac-mockup {
-    background: #111111;
-    box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.06);
-  }
-
-  .mac-mockup-titlebar {
-    background: #222222;
-  }
-
-  .mac-mockup-url {
-    color: rgba(255, 255, 255, 0.3);
-  }
-
-  /* Skeleton shimmer */
-  .case-img-full:not([data-loaded]),
-  .case-img-row img:not([data-loaded]),
-  picture img:not([data-loaded]),
-  .case-video video:not([data-loaded]) {
+  :root:not(.light) .nav { background: rgba(26, 26, 26, 0.85); }
+  :root:not(.light) .nav::after { background: rgba(255, 255, 255, 0.08); }
+  :root:not(.light) .about-bottom { background: rgba(26, 26, 26, 0.85); }
+  :root:not(.light) .project-thumb { box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.08); }
+  :root:not(.light) .case-img-full,
+  :root:not(.light) .case-body > picture img,
+  :root:not(.light) .case-tab-panel > picture img,
+  :root:not(.light) .case-img-row img { box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.06); }
+  :root:not(.light) .case-lightbox { background: rgba(0, 0, 0, 0.95); }
+  :root:not(.light) .mac-mockup { background: #111; box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.06); }
+  :root:not(.light) .mac-mockup-titlebar { background: #222; }
+  :root:not(.light) .mac-mockup-url { color: rgba(255, 255, 255, 0.3); }
+  :root:not(.light) .case-img-full:not([data-loaded]),
+  :root:not(.light) .case-img-row img:not([data-loaded]),
+  :root:not(.light) picture img:not([data-loaded]),
+  :root:not(.light) .case-video video:not([data-loaded]) {
     background: linear-gradient(90deg, #222 25%, #2a2a2a 50%, #222 75%);
     background-size: 200% 100%;
   }
-
-  /* Card/hover backgrounds */
-  .project-item:hover {
-    background: rgba(255, 255, 255, 0.03);
-  }
+  :root:not(.light) .project-item:hover { background: rgba(255, 255, 255, 0.03); }
 }
+
+/* Manual dark (user clicked toggle) */
+html.dark {
+  --bg: #1a1a1a;
+  --text: #e0e0e0;
+  --text-dim: #888888;
+  --text-faint: rgba(255, 255, 255, 0.15);
+  --line: rgba(255, 255, 255, 0.1);
+  --line-muted: rgba(255, 255, 255, 0.08);
+  --selection-bg: #F8401C;
+  --selection-color: #fff;
+}
+
+html.dark .nav { background: rgba(26, 26, 26, 0.85); }
+html.dark .nav::after { background: rgba(255, 255, 255, 0.08); }
+html.dark .about-bottom { background: rgba(26, 26, 26, 0.85); }
+html.dark .project-thumb { box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.08); }
+html.dark .case-img-full,
+html.dark .case-body > picture img,
+html.dark .case-tab-panel > picture img,
+html.dark .case-img-row img { box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.06); }
+html.dark .case-lightbox { background: rgba(0, 0, 0, 0.95); }
+html.dark .mac-mockup { background: #111; box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.06); }
+html.dark .mac-mockup-titlebar { background: #222; }
+html.dark .mac-mockup-url { color: rgba(255, 255, 255, 0.3); }
+html.dark .case-img-full:not([data-loaded]),
+html.dark .case-img-row img:not([data-loaded]),
+html.dark picture img:not([data-loaded]),
+html.dark .case-video video:not([data-loaded]) {
+  background: linear-gradient(90deg, #222 25%, #2a2a2a 50%, #222 75%);
+  background-size: 200% 100%;
+}
+html.dark .project-item:hover { background: rgba(255, 255, 255, 0.03); }
 
 /* --- Responsive --- */
 

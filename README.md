@@ -19,7 +19,7 @@ A clean, minimal, bilingual (RU/EN) portfolio template for designers. Based on [
 - **GoatCounter analytics** — privacy-friendly, cookie-free
 - **SEO ready** — meta tags, Open Graph, structured data, sitemap
 - **Print stylesheet** — clean printable version of the about page
-- **Dark mode** — automatic, follows system preference (`prefers-color-scheme`)
+- **Dark mode** — toggle button + automatic system preference, persisted in localStorage
 - **Accessible** — ARIA attributes, keyboard focus styles, reduced motion support
 - **GitHub Pages ready** — just push to main
 
@@ -122,11 +122,15 @@ Also update the accent color in:
 
 ### Dark Mode
 
-Dark mode activates automatically based on the user's system preference (`prefers-color-scheme: dark`). No toggle button — it just works.
+Dark mode works in two ways:
+- **Automatic** — follows the user's system preference (`prefers-color-scheme: dark`)
+- **Manual toggle** — click the ☽/☀ button in the navigation bar
 
-To customize dark mode colors, edit the `@media (prefers-color-scheme: dark)` block in `styles.css`.
+The user's choice is saved in `localStorage` and persists across sessions.
 
-To disable dark mode entirely, remove that media query block.
+To customize dark mode colors, edit the `@media (prefers-color-scheme: dark)` and `html.dark` blocks in `styles.css`.
+
+To disable dark mode entirely, remove those CSS blocks and the `initThemeToggle()` function from `script.js`.
 
 ### Fonts
 

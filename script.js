@@ -4,6 +4,8 @@ const REVEAL_THRESHOLD = 0.15;
 
 /* --- Scroll Reveal --- */
 
+let observer;
+
 function initScrollReveal() {
   const reveals = document.querySelectorAll('.reveal');
   if (!reveals.length) return;
@@ -23,6 +25,66 @@ function initScrollReveal() {
   reveals.forEach((el, i) => {
     el.style.transitionDelay = `${i * 50}ms`;
     observer.observe(el);
+  });
+}
+
+/* --- Case Tabs --- */
+
+function initCaseTabs() {
+  const tabs = document.querySelectorAll('.case-tab');
+  if (!tabs.length) return;
+
+  tabs.forEach((tab) => {
+    tab.addEventListener('click', () => activateTab(tab));
+    tab.addEventListener('keydown', (e) => {
+      const allTabs = Array.from(tab.closest('[role="tablist"]').querySelectorAll('[role="tab"]'));
+      const idx = allTabs.indexOf(tab);
+      let next;
+      if (e.key === 'ArrowRight') next = allTabs[(idx + 1) % allTabs.length];
+      else if (e.key === 'ArrowLeft') next = allTabs[(idx - 1 + allTabs.length) % allTabs.length];
+      if (next) { e.preventDefault(); next.focus(); next.click(); }
+    });
+  });
+
+  function activateTab(tab) {
+    const targetId = tab.getAttribute('data-tab');
+    const container = tab.closest('main');
+    container.querySelectorAll('.case-tab').forEach((t) => {
+      t.classList.remove('active');
+      t.setAttribute('aria-selected', 'false');
+      t.setAttribute('tabindex', '-1');
+    });
+    container.querySelectorAll('.case-tab-panel').forEach((p) => p.classList.remove('active'));
+    tab.classList.add('active');
+    tab.setAttribute('aria-selected', 'true');
+    tab.setAttribute('tabindex', '0');
+    const panel = container.querySelector(`.case-tab-panel[data-panel="${targetId}"]`);
+    if (panel) panel.classList.add('active');
+  }
+}
+
+/* --- Slideshows --- */
+
+function initSlideshows() {
+  document.querySelectorAll('[data-slideshow]').forEach(wrap => {
+    const track = wrap.querySelector('.case-slideshow-track');
+    const imgs = track.querySelectorAll('img');
+    const counter = wrap.querySelector('[data-counter]');
+    const prev = wrap.querySelector('[data-prev]');
+    const next = wrap.querySelector('[data-next]');
+    if (!track || imgs.length < 2) return;
+
+    let current = 0;
+    const total = imgs.length;
+
+    function go(idx) {
+      current = (idx + total) % total;
+      track.style.transform = 'translateX(-' + (current * 100) + '%)';
+      if (counter) counter.textContent = (current + 1) + '/' + total;
+    }
+
+    if (prev) prev.addEventListener('click', () => go(current - 1));
+    if (next) next.addEventListener('click', () => go(current + 1));
   });
 }
 
@@ -91,8 +153,7 @@ function initGoatCounterEvents() {
   }
 }
 
-/* Shared observer reference for re-observing on tab switch */
-let observer;
+/* Shared observer reference for re-observing on tab switch (scoped via initScrollReveal) */
 
 /* --- Lightbox --- */
 
@@ -136,6 +197,7 @@ function initLightbox() {
     resetZoom();
     overlay.classList.add('open');
     overlay.style.touchAction = 'none';
+    overlay.setAttribute('aria-modal', 'true');
     previousFocus = document.activeElement;
     overlay.querySelector('.lb-close').focus();
   }
@@ -143,6 +205,7 @@ function initLightbox() {
   function closeOverlay() {
     overlay.classList.remove('open');
     overlay.style.touchAction = '';
+    overlay.removeAttribute('aria-modal');
     resetZoom();
     if (previousFocus) previousFocus.focus();
   }
@@ -150,7 +213,11 @@ function initLightbox() {
   overlay.addEventListener('keydown', (e) => {
     if (e.key === 'Tab') {
       e.preventDefault();
-      overlay.querySelector('.lb-close').focus();
+      const closeBtn = overlay.querySelector('.lb-close');
+      closeBtn.focus();
+    }
+    if (e.key === 'Escape') {
+      closeOverlay();
     }
   });
 
@@ -315,6 +382,7 @@ function initTerminal() {
       '<div id="term-footer">\u2191\u2193 history \u00b7 Tab autocomplete \u00b7 clear \u00b7 Esc close</div>';
     document.body.appendChild(el);
 
+    const accent = getComputedStyle(document.documentElement).getPropertyValue('--accent').trim() || '#F8401C';
     const style = document.createElement('style');
     style.textContent =
       '#terminal{position:fixed;bottom:24px;right:24px;width:500px;max-width:calc(100vw - 32px);' +
@@ -328,11 +396,11 @@ function initTerminal() {
       '#term-close:hover{color:#fff}' +
       '#term-body{padding:12px 14px 14px;max-height:320px;overflow-y:auto}' +
       '#term-output{color:#ccc;white-space:pre-wrap;word-break:break-word;line-height:1.5}' +
-      '#term-output .cmd{color:#f8401c}' +
+      '#term-output .cmd{color:' + accent + '}' +
       '#term-output .out{color:#aaa}' +
       '#term-line{display:flex;align-items:center;gap:8px;margin-top:8px}' +
-      '#term-prompt{color:#f8401c;flex-shrink:0}' +
-      '#term-input{flex:1;background:none;border:none;color:#fff;font:inherit;outline:none;caret-color:#f8401c}' +
+      '#term-prompt{color:' + accent + ';flex-shrink:0}' +
+      '#term-input{flex:1;background:none;border:none;color:#fff;font:inherit;outline:none;caret-color:' + accent + '}' +
       '#term-footer{padding:8px 14px;background:#252525;color:#555;font-size:11px;border-top:1px solid #333}';
     document.head.appendChild(style);
 
@@ -453,7 +521,8 @@ function initVanillaBadge() {
 
   const badge = document.createElement('div');
   badge.innerHTML =
-    '<span style="opacity:.5">0 frameworks \u00b7 0 dependencies \u00b7 vanilla everything</span>';
+    '<span style="opacity:.5">0 frameworks \u00b7 0 dependencies \u00b7 vanilla everything</span>' +
+    '<span class="badge-hint" style="display:none;opacity:.35;margin-left:8px" title="Press ~ to open terminal">~</span>';
 
   badge.style.cssText =
     'position:fixed;bottom:16px;left:50%;transform:translateX(-50%) translateY(20px);' +
@@ -473,8 +542,14 @@ function initVanillaBadge() {
 
   document.addEventListener('mousemove', (e) => {
     const hot = e.clientY > window.innerHeight - 80;
-    badge.style.background = hot ? 'rgba(255,255,255,1)' : 'rgba(255,255,255,.55)';
-    badge.style.color = hot ? '#000' : '#999';
+    const isDark = document.documentElement.classList.contains('dark') ||
+      (!document.documentElement.classList.contains('light') && window.matchMedia('(prefers-color-scheme: dark)').matches);
+    badge.style.background = hot
+      ? (isDark ? 'rgba(40,40,40,1)' : 'rgba(255,255,255,1)')
+      : (isDark ? 'rgba(40,40,40,.55)' : 'rgba(255,255,255,.55)');
+    badge.style.color = hot ? (isDark ? '#fff' : '#000') : '#999';
+    const hint = badge.querySelector('.badge-hint');
+    if (hint) hint.style.display = hot ? 'inline' : 'none';
   });
 }
 
@@ -550,6 +625,27 @@ function initDesignSystemToggle() {
   });
 }
 
+/* --- Nav active state (auto-detect from URL) --- */
+
+function initNavActive() {
+  const links = document.querySelectorAll('.nav-links a');
+  if (!links.length) return;
+  const path = location.pathname.replace(/\/+$/, '') || '/';
+  links.forEach(a => {
+    const href = a.getAttribute('href');
+    const isProjects = href === '.' || href === './' || href === '../' || href === '/' || href === '';
+    const isAbout = /about/i.test(href);
+    const isRadar = /radar/i.test(href);
+    if ((path.includes('/projects/') || path === '/' || path === '') && isProjects) {
+      a.classList.add('active');
+    } else if (path.includes('/about') && isAbout) {
+      a.classList.add('active');
+    } else if (path.includes('/radar') && isRadar) {
+      a.classList.add('active');
+    }
+  });
+}
+
 /* --- Nav scroll line --- */
 
 function initNavScrollLine() {
@@ -593,9 +689,11 @@ function initCursorTrail() {
 
   const CELL = 24;
   const POOL_SIZE = 30;
+  const accent = getComputedStyle(document.documentElement).getPropertyValue('--accent').trim() || '#F8401C';
   const pool = [];
   let idx = 0;
   const visited = new Set();
+  let lastMove = 0;
 
   for (let i = 0; i < POOL_SIZE; i++) {
     const px = document.createElement('div');
@@ -607,6 +705,10 @@ function initCursorTrail() {
   }
 
   document.addEventListener('mousemove', (e) => {
+    const now = performance.now();
+    if (now - lastMove < 16) return;
+    lastMove = now;
+
     const gx = Math.floor(e.clientX / CELL) * CELL;
     const gy = Math.floor(e.clientY / CELL) * CELL;
     const key = gx + ',' + gy;
@@ -619,7 +721,7 @@ function initCursorTrail() {
     idx = (idx + 1) % POOL_SIZE;
 
     px.style.transition = 'none';
-    px.style.background = '#F8401C';
+    px.style.background = accent;
     px.style.left = gx + 'px';
     px.style.top = gy + 'px';
     px.style.opacity = '0.25';
@@ -730,9 +832,12 @@ function initThemeToggle() {
 /* --- Init --- */
 
 document.addEventListener('DOMContentLoaded', () => {
+  initNavActive();
   initThemeToggle();
   initNavScrollLine();
   initScrollReveal();
+  initCaseTabs();
+  initSlideshows();
   initProjectLinks();
   initLightbox();
   initBurger();

@@ -44,80 +44,113 @@
     <div class="case-meta">Продуктовый дизайнер · Company Name · 2025</div>
     <h1 class="case-h1">Project Alpha</h1>
 
+    <div class="case-tabs" role="tablist">
+      <button class="case-tab active" data-tab="product" role="tab" aria-selected="true" aria-controls="panel-product">Продукт</button>
+      <button class="case-tab" data-tab="process" role="tab" aria-selected="false" aria-controls="panel-process">Процесс</button>
+    </div>
+
     <div class="case-body">
 
-      <!-- 1. Overview -->
-      <section class="case-section">
-        <span class="case-section-num">1</span>
-        <h2 class="case-section-title">Обзор</h2>
-        <p>Project Alpha — мобильное приложение для управления задачами. Команда обратилась с запросом на полный редизайн: от исследований до финальных экранов.</p>
-        <p>Основная задача — упростить флоу создания задач и повысить ежедневное удержание пользователей.</p>
-      </section>
+      <!-- ======================== ПРОДУКТ ======================== -->
+      <div class="case-tab-panel active" data-panel="product" id="panel-product" role="tabpanel">
 
-      <div class="case-stats">
-        <div>
-          <div class="case-stat-value">+32%</div>
-          <div class="case-stat-label">Рост DAU</div>
+        <section class="case-section">
+          <span class="case-section-num">1</span>
+          <h2 class="case-section-title">Обзор</h2>
+          <p>Project Alpha — мобильное приложение для управления задачами. Команда обратилась с запросом на полный редизайн: от исследований до финальных экранов.</p>
+          <p>Основная задача — упростить флоу создания задач и повысить ежедневное удержание пользователей.</p>
+        </section>
+
+        <div class="case-stats">
+          <div>
+            <div class="case-stat-value">+32%</div>
+            <div class="case-stat-label">Рост DAU</div>
+          </div>
+          <div>
+            <div class="case-stat-value">2.4</div>
+            <div class="case-stat-label">Шагов до создания задачи (было 5)</div>
+          </div>
+          <div>
+            <div class="case-stat-value">4.8</div>
+            <div class="case-stat-label">Рейтинг App Store</div>
+          </div>
+          <div>
+            <div class="case-stat-value">12</div>
+            <div class="case-stat-label">Недель до запуска</div>
+          </div>
         </div>
-        <div>
-          <div class="case-stat-value">2.4</div>
-          <div class="case-stat-label">Шагов до создания задачи (было 5)</div>
-        </div>
-        <div>
-          <div class="case-stat-value">4.8</div>
-          <div class="case-stat-label">Рейтинг App Store</div>
-        </div>
-        <div>
-          <div class="case-stat-value">12</div>
-          <div class="case-stat-label">Недель до запуска</div>
-        </div>
+
+        <picture>
+          <source srcset="../assets/img/thumb-alpha.webp" type="image/webp">
+          <img class="case-img-full" loading="lazy" src="../assets/img/thumb-alpha.png" alt="Project Alpha — обзор">
+        </picture>
+
+        <!-- Quote -->
+        <blockquote class="case-quote">
+          «Новый интерфейс сократил время онбординга вдвое — пользователи сразу понимают что делать.»
+          <cite>— Product Manager, Company Name</cite>
+        </blockquote>
+
+        <section class="case-section">
+          <span class="case-section-num">2</span>
+          <h2 class="case-section-title">Результат</h2>
+          <p>Приложение запущено в App Store и Google Play. DAU вырос на 32% за первый месяц после редизайна. Среднее время создания задачи сократилось с 45 до 18 секунд.</p>
+          <p>Команда продолжает развивать продукт по нашей дизайн-системе и гайдлайнам.</p>
+        </section>
+
       </div>
 
-      <img class="case-img-full" src="../assets/img/thumb-alpha.png" alt="Project Alpha — обзор">
+      <!-- ======================== ПРОЦЕСС ======================== -->
+      <div class="case-tab-panel" data-panel="process" id="panel-process" role="tabpanel">
 
-      <!-- 2. Process -->
-      <section class="case-section">
-        <span class="case-section-num">2</span>
-        <h2 class="case-section-title">Процесс</h2>
-        <p>Начали с интервью: 12 пользователей, 3 роли. Обнаружили, что основная боль — сложность повторяющихся задач. Вместо копирования люди заводили задачи заново каждый раз.</p>
-        <p>Провели конкурентный анализ 8 продуктов, собрали карту возможностей. Приоритизировали по ICE и определили MVP-скоуп.</p>
-      </section>
+        <section class="case-section">
+          <span class="case-section-num">1</span>
+          <h2 class="case-section-title">Исследование</h2>
+          <p>Начали с интервью: 12 пользователей, 3 роли. Обнаружили, что основная боль — сложность повторяющихся задач. Вместо копирования люди заводили задачи заново каждый раз.</p>
+          <p>Провели конкурентный анализ 8 продуктов, собрали карту возможностей. Приоритизировали по ICE и определили MVP-скоуп.</p>
+        </section>
 
-      <section class="case-section">
-        <span class="case-section-num">3</span>
-        <h2 class="case-section-title">Решения</h2>
-        <p>Разработали три ключевых решения:</p>
-        <ul>
-          <li>Шаблоны задач с автозаполнением</li>
-          <li>Quick-add из любого экрана приложения</li>
-          <li>Прогресс-бар для серий повторяющихся задач</li>
-        </ul>
-        <p>Каждое решение прошло 2 раунда юзабилити-тестирования. Iteration rate: 3 дня от гипотезы до теста.</p>
-      </section>
+        <!-- Slideshow -->
+        <div class="case-slideshow-wrap" data-slideshow>
+          <div class="case-slideshow">
+            <div class="case-slideshow-track">
+              <picture><source srcset="../assets/img/thumb-alpha.webp" type="image/webp"><img src="../assets/img/thumb-alpha.png" alt="Исследование — слайд 1"></picture>
+              <picture><source srcset="../assets/img/thumb-beta.webp" type="image/webp"><img src="../assets/img/thumb-beta.png" alt="Исследование — слайд 2"></picture>
+              <picture><source srcset="../assets/img/thumb-gamma.webp" type="image/webp"><img src="../assets/img/thumb-gamma.png" alt="Исследование — слайд 3"></picture>
+            </div>
+            <div class="case-slideshow-nav">
+              <span class="case-slideshow-counter" data-counter>1/3</span>
+            </div>
+          </div>
+          <button class="case-slideshow-arrow" data-prev>&#x2039;</button>
+          <button class="case-slideshow-arrow" data-next>&#x203A;</button>
+        </div>
 
-      <div class="case-img-row">
-        <img class="case-img-full" src="../assets/img/thumb-beta.png" alt="Wireframes">
-        <img class="case-img-full" src="../assets/img/thumb-gamma.png" alt="UI Kit">
+        <section class="case-section">
+          <span class="case-section-num">2</span>
+          <h2 class="case-section-title">Решения</h2>
+          <p>Разработали три ключевых решения:</p>
+          <ul>
+            <li>Шаблоны задач с автозаполнением</li>
+            <li>Quick-add из любого экрана приложения</li>
+            <li>Прогресс-бар для серий повторяющихся задач</li>
+          </ul>
+          <p>Каждое решение прошло 2 раунда юзабилити-тестирования. Iteration rate: 3 дня от гипотезы до теста.</p>
+        </section>
+
+        <div class="case-img-row">
+          <picture><source srcset="../assets/img/thumb-beta.webp" type="image/webp"><img class="case-img-full" loading="lazy" src="../assets/img/thumb-beta.png" alt="Wireframes"></picture>
+          <picture><source srcset="../assets/img/thumb-gamma.webp" type="image/webp"><img class="case-img-full" loading="lazy" src="../assets/img/thumb-gamma.png" alt="UI Kit"></picture>
+        </div>
+        <div class="case-caption">Wireframes и UI Kit: компоненты, цвета, типографика</div>
+
+        <picture>
+          <source srcset="../assets/img/thumb-alpha.webp" type="image/webp">
+          <img class="case-img-full" loading="lazy" src="../assets/img/thumb-alpha.png" alt="Final screens">
+        </picture>
+        <div class="case-caption">Финальные экраны: главная, карточка задачи, профиль</div>
+
       </div>
-      <div class="case-caption">Wireframes и UI Kit: компоненты, цвета, типографика</div>
-
-      <!-- Image with caption -->
-      <img class="case-img-full" src="../assets/img/thumb-alpha.png" alt="Final screens">
-      <div class="case-caption">Финальные экраны: главная, карточка задачи, профиль</div>
-
-      <!-- Quote -->
-      <blockquote class="case-quote">
-        «Новый интерфейс сократил время онбординга вдвое — пользователи сразу понимают что делать.»
-        <cite>— Product Manager, Company Name</cite>
-      </blockquote>
-
-      <!-- 3. Result -->
-      <section class="case-section">
-        <span class="case-section-num">4</span>
-        <h2 class="case-section-title">Результат</h2>
-        <p>Приложение запущено в App Store и Google Play. DAU вырос на 32% за первый месяц после редизайна. Среднее время создания задачи сократилось с 45 до 18 секунд.</p>
-        <p>Команда продолжает развивать продукт по нашей дизайн-системе и гайдлайнам.</p>
-      </section>
 
       <hr class="case-separator">
 

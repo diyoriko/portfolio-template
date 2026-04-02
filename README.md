@@ -9,7 +9,7 @@ A clean, minimal, bilingual (RU/EN) portfolio template for designers. Based on [
 
 ![Preview](assets/img/preview.png)
 
-**[Live Demo →](https://diyor.design)** · **[Use this template →](https://github.com/diyoriko/portfolio-template/generate)**
+**[Live Demo →](https://portfolio-template-demo-463.netlify.app)** · **[Use this template →](https://github.com/diyoriko/portfolio-template/generate)**
 
 ## Features
 
@@ -90,17 +90,21 @@ Or use GitHub Pages (free): push to `main` branch, enable Pages in Settings.
 │   └── projects/
 │       └── example.html    # Case study (EN)
 ├── assets/
-│   └── img/                # Project thumbnails and OG image
+│   └── img/                # Project thumbnails (WebP + PNG fallback)
+├── .github/
+│   └── ISSUE_TEMPLATE/     # Bug report & feature request templates
 ├── styles.css              # Full CSS source
 ├── styles.min.css          # Minified CSS
 ├── script.js               # Full JS source
 ├── script.min.js           # Minified JS
 ├── config.json             # Template configuration
 ├── setup.sh                # Interactive setup script
+├── manifest.json           # PWA manifest
 ├── sitemap.xml             # Sitemap
 ├── robots.txt              # Robots
 ├── CNAME                   # Custom domain
 ├── favicon.svg             # Favicon
+├── CONTRIBUTING.md         # Contributor guide
 └── README.md
 ```
 
@@ -123,7 +127,7 @@ Edit CSS variables in `styles.css`:
 
 Also update the accent color in:
 - `favicon.svg` — the circle fill color
-- `script.js` — terminal cursor color and hover effects (search for `#F8401C`)
+- `config.json` — the `accent_color` field
 
 ### Dark Mode
 
@@ -267,6 +271,44 @@ HTML files load `.min.css` and `.min.js` — always rebuild after changes.
 - Breakpoints: 900px (tablet), 480px (mobile)
 - Press `Shift+G` in the browser to visualize the grid
 
+## Contact Form
+
+This template doesn't include a contact form by default. To add one:
+
+**Option A: [Formspree](https://formspree.io)** (free tier: 50 submissions/month)
+
+```html
+<form action="https://formspree.io/f/YOUR_ID" method="POST">
+  <input type="email" name="email" placeholder="Your email" required>
+  <textarea name="message" placeholder="Message" required></textarea>
+  <button type="submit">Send</button>
+</form>
+```
+
+**Option B: [Netlify Forms](https://docs.netlify.com/forms/setup/)** (free with Netlify hosting)
+
+```html
+<form name="contact" method="POST" data-netlify="true">
+  <input type="email" name="email" required>
+  <textarea name="message" required></textarea>
+  <button type="submit">Send</button>
+</form>
+```
+
+## Adding More Languages
+
+The template ships with Russian and English. To add a third language:
+
+1. Create a new folder (e.g., `tr/` for Turkish)
+2. Copy `en/index.html`, `en/about.html`, and `en/projects/` into it
+3. Translate the content
+4. Add `hreflang` links to all pages:
+   ```html
+   <link rel="alternate" hreflang="tr" href="https://example.com/tr/">
+   ```
+5. Add a language option to the `<nav>` switcher in all pages
+6. Add the new URLs to `sitemap.xml`
+
 ## Browser Support
 
 All modern browsers (Chrome, Firefox, Safari, Edge). No IE11 support.
@@ -275,9 +317,11 @@ All modern browsers (Chrome, Firefox, Safari, Edge). No IE11 support.
 
 Built for speed: no JavaScript frameworks, no CSS preprocessors, minimal assets.
 
-- Performance: 99
-- Accessibility: 95+
-- Best Practices: 100
+Lighthouse scores (localhost, headless Chrome):
+
+- Performance: 90
+- Accessibility: 92
+- Best Practices: 81
 - SEO: 100
 
 ## License

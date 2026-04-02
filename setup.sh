@@ -113,6 +113,9 @@ cat > favicon.svg << FAVICON
 FAVICON
 echo "  ✓ Favicon updated with initial: $INITIAL"
 
+# Update manifest.json theme_color
+sed -i '' "s|#F8401C|${ACCENT_COLOR:-#F8401C}|g" manifest.json 2>/dev/null || true
+
 # Update config.json with actual values
 cat > config.json << EOF
 {

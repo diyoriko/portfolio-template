@@ -44,80 +44,113 @@
     <div class="case-meta">Product Designer · Company Name · 2025</div>
     <h1 class="case-h1">Project Alpha</h1>
 
+    <div class="case-tabs" role="tablist">
+      <button class="case-tab active" data-tab="product" role="tab" aria-selected="true" aria-controls="panel-product">Product</button>
+      <button class="case-tab" data-tab="process" role="tab" aria-selected="false" aria-controls="panel-process">Process</button>
+    </div>
+
     <div class="case-body">
 
-      <!-- 1. Overview -->
-      <section class="case-section">
-        <span class="case-section-num">1</span>
-        <h2 class="case-section-title">Overview</h2>
-        <p>Project Alpha is a mobile app for task management. The team reached out for a complete redesign: from research to final screens.</p>
-        <p>The main goal was to simplify the task creation flow and increase daily user retention.</p>
-      </section>
+      <!-- ======================== PRODUCT ======================== -->
+      <div class="case-tab-panel active" data-panel="product" id="panel-product" role="tabpanel">
 
-      <div class="case-stats">
-        <div>
-          <div class="case-stat-value">+32%</div>
-          <div class="case-stat-label">DAU growth</div>
+        <section class="case-section">
+          <span class="case-section-num">1</span>
+          <h2 class="case-section-title">Overview</h2>
+          <p>Project Alpha is a mobile app for task management. The team reached out for a complete redesign: from research to final screens.</p>
+          <p>The main goal was to simplify the task creation flow and increase daily user retention.</p>
+        </section>
+
+        <div class="case-stats">
+          <div>
+            <div class="case-stat-value">+32%</div>
+            <div class="case-stat-label">DAU growth</div>
+          </div>
+          <div>
+            <div class="case-stat-value">2.4</div>
+            <div class="case-stat-label">Steps to create a task (was 5)</div>
+          </div>
+          <div>
+            <div class="case-stat-value">4.8</div>
+            <div class="case-stat-label">App Store rating</div>
+          </div>
+          <div>
+            <div class="case-stat-value">12</div>
+            <div class="case-stat-label">Weeks to launch</div>
+          </div>
         </div>
-        <div>
-          <div class="case-stat-value">2.4</div>
-          <div class="case-stat-label">Steps to create a task (was 5)</div>
-        </div>
-        <div>
-          <div class="case-stat-value">4.8</div>
-          <div class="case-stat-label">App Store rating</div>
-        </div>
-        <div>
-          <div class="case-stat-value">12</div>
-          <div class="case-stat-label">Weeks to launch</div>
-        </div>
+
+        <picture>
+          <source srcset="../../assets/img/thumb-alpha.webp" type="image/webp">
+          <img class="case-img-full" loading="lazy" src="../../assets/img/thumb-alpha.png" alt="Project Alpha overview">
+        </picture>
+
+        <!-- Quote -->
+        <blockquote class="case-quote">
+          "The new interface cut onboarding time in half — users immediately understand what to do."
+          <cite>— Product Manager, Company Name</cite>
+        </blockquote>
+
+        <section class="case-section">
+          <span class="case-section-num">2</span>
+          <h2 class="case-section-title">Result</h2>
+          <p>The app launched on App Store and Google Play. DAU grew by 32% in the first month after the redesign. Average task creation time dropped from 45 to 18 seconds.</p>
+          <p>The team continues to build on our design system and guidelines.</p>
+        </section>
+
       </div>
 
-      <img class="case-img-full" src="../../assets/img/thumb-alpha.png" alt="Project Alpha overview">
+      <!-- ======================== PROCESS ======================== -->
+      <div class="case-tab-panel" data-panel="process" id="panel-process" role="tabpanel">
 
-      <!-- 2. Process -->
-      <section class="case-section">
-        <span class="case-section-num">2</span>
-        <h2 class="case-section-title">Process</h2>
-        <p>Started with interviews: 12 users, 3 roles. Found that the main pain point was recurring tasks. Instead of copying, people were creating tasks from scratch every time.</p>
-        <p>Conducted competitive analysis of 8 products, built an opportunity map. Prioritized by ICE and defined the MVP scope.</p>
-      </section>
+        <section class="case-section">
+          <span class="case-section-num">1</span>
+          <h2 class="case-section-title">Research</h2>
+          <p>Started with interviews: 12 users, 3 roles. Found that the main pain point was recurring tasks. Instead of copying, people were creating tasks from scratch every time.</p>
+          <p>Conducted competitive analysis of 8 products, built an opportunity map. Prioritized by ICE and defined the MVP scope.</p>
+        </section>
 
-      <section class="case-section">
-        <span class="case-section-num">3</span>
-        <h2 class="case-section-title">Solutions</h2>
-        <p>Developed three key solutions:</p>
-        <ul>
-          <li>Task templates with auto-fill</li>
-          <li>Quick-add from any screen</li>
-          <li>Progress bar for recurring task series</li>
-        </ul>
-        <p>Each solution went through 2 rounds of usability testing. Iteration rate: 3 days from hypothesis to test.</p>
-      </section>
+        <!-- Slideshow -->
+        <div class="case-slideshow-wrap" data-slideshow>
+          <div class="case-slideshow">
+            <div class="case-slideshow-track">
+              <picture><source srcset="../../assets/img/thumb-alpha.webp" type="image/webp"><img src="../../assets/img/thumb-alpha.png" alt="Research — slide 1"></picture>
+              <picture><source srcset="../../assets/img/thumb-beta.webp" type="image/webp"><img src="../../assets/img/thumb-beta.png" alt="Research — slide 2"></picture>
+              <picture><source srcset="../../assets/img/thumb-gamma.webp" type="image/webp"><img src="../../assets/img/thumb-gamma.png" alt="Research — slide 3"></picture>
+            </div>
+            <div class="case-slideshow-nav">
+              <span class="case-slideshow-counter" data-counter>1/3</span>
+            </div>
+          </div>
+          <button class="case-slideshow-arrow" data-prev>&#x2039;</button>
+          <button class="case-slideshow-arrow" data-next>&#x203A;</button>
+        </div>
 
-      <div class="case-img-row">
-        <img class="case-img-full" src="../../assets/img/thumb-beta.png" alt="Wireframes">
-        <img class="case-img-full" src="../../assets/img/thumb-gamma.png" alt="UI Kit">
+        <section class="case-section">
+          <span class="case-section-num">2</span>
+          <h2 class="case-section-title">Solutions</h2>
+          <p>Developed three key solutions:</p>
+          <ul>
+            <li>Task templates with auto-fill</li>
+            <li>Quick-add from any screen</li>
+            <li>Progress bar for recurring task series</li>
+          </ul>
+          <p>Each solution went through 2 rounds of usability testing. Iteration rate: 3 days from hypothesis to test.</p>
+        </section>
+
+        <div class="case-img-row">
+          <picture><source srcset="../../assets/img/thumb-beta.webp" type="image/webp"><img class="case-img-full" loading="lazy" src="../../assets/img/thumb-beta.png" alt="Wireframes"></picture>
+          <picture><source srcset="../../assets/img/thumb-gamma.webp" type="image/webp"><img class="case-img-full" loading="lazy" src="../../assets/img/thumb-gamma.png" alt="UI Kit"></picture>
+        </div>
+        <div class="case-caption">Wireframes and UI Kit: components, colors, typography</div>
+
+        <picture>
+          <source srcset="../../assets/img/thumb-alpha.webp" type="image/webp">
+          <img class="case-img-full" loading="lazy" src="../../assets/img/thumb-alpha.png" alt="Final screens">
+        </picture>
+        <div class="case-caption">Final screens: home, task card, profile</div>
+
       </div>
-      <div class="case-caption">Wireframes and UI Kit: components, colors, typography</div>
-
-      <!-- Image with caption -->
-      <img class="case-img-full" src="../../assets/img/thumb-alpha.png" alt="Final screens">
-      <div class="case-caption">Final screens: home, task card, profile</div>
-
-      <!-- Quote -->
-      <blockquote class="case-quote">
-        "The new interface cut onboarding time in half — users immediately understand what to do."
-        <cite>— Product Manager, Company Name</cite>
-      </blockquote>
-
-      <!-- 3. Result -->
-      <section class="case-section">
-        <span class="case-section-num">4</span>
-        <h2 class="case-section-title">Result</h2>
-        <p>The app launched on App Store and Google Play. DAU grew by 32% in the first month after the redesign. Average task creation time dropped from 45 to 18 seconds.</p>
-        <p>The team continues to build on our design system and guidelines.</p>
-      </section>
 
       <hr class="case-separator">
 

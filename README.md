@@ -1,5 +1,10 @@
 # Portfolio Template
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![GitHub stars](https://img.shields.io/github/stars/diyoriko/portfolio-template)](https://github.com/diyoriko/portfolio-template/stargazers)
+[![Repo size](https://img.shields.io/github/repo-size/diyoriko/portfolio-template)](https://github.com/diyoriko/portfolio-template)
+[![Use this template](https://img.shields.io/badge/Use%20this-template-2ea44f)](https://github.com/diyoriko/portfolio-template/generate)
+
 A clean, minimal, bilingual (RU/EN) portfolio template for designers. Based on [diyor.design](https://diyor.design).
 
 ![Preview](assets/img/preview.png)

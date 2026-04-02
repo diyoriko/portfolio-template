@@ -16,7 +16,7 @@ A clean, minimal, bilingual (RU/EN) portfolio template for designers. Based on [
 - **Zero dependencies** — vanilla HTML, CSS, JavaScript
 - **Bilingual** — Russian and English with language switcher
 - **Responsive** — mobile-first, works on all screen sizes
-- **Case study template** — structured sections with numbered headings, stats, image grids
+- **Case study template** — 20 components: sections, stats, tabs, carousels, mac mockups, font showcases, image grids
 - **Scroll reveal** — subtle entrance animations
 - **Lightbox** — click-to-zoom on case study images
 - **Terminal easter egg** — press `~` for a secret terminal
@@ -161,7 +161,7 @@ The home page has three sections:
 
 - **Selected projects** — main work with thumbnails
 - **Pet projects** — side projects, experiments
-- **Archive** — older work, no thumbnails
+- **Archive** — older work
 
 To remove a section, delete its `<h2>` and `<div class="project-list">` block.
 
@@ -188,28 +188,75 @@ Available components:
 
 | Component | Usage |
 |---|---|
-| `.case-stats` | Key metrics grid (duration, role, team) |
-| `.case-img-full` | Full-width image |
+| `.case-section` | Numbered content section with title |
+| `.case-stats` | Key metrics grid (4 columns) |
+| `.case-img-full` | Full-width image (click to lightbox) |
 | `.case-img-row` | Two images side by side |
+| `.case-img-row--3` | Three-column image grid |
+| `.case-concept` | Figure with image + caption (use inside `.case-img-row--3`) |
+| `.case-img-bordered` | Image with visible 1px border |
+| `.case-img-scroll` | Scrollable container for tall images (500px max) |
 | `.case-caption` | Caption text below image |
 | `.case-quote` | Blockquote with citation |
+| `.case-description` | Large intro text with indent |
+| `.case-links` | External links (Figma, prototype, site) |
+| `.case-video` | Autoplay video wrapper |
 | `.case-separator` | Horizontal divider |
 | `.case-nav` | Previous/next project links |
+| `.case-tabs` | Tabbed content (e.g. Identity / Landing) |
+| `.case-slideshow-wrap` | Image carousel with arrows and counter |
+| `.case-font-showcase` | Typography specimen (name, weights, characters) |
+| `.mac-mockup` | Browser window mockup with titlebar |
 
-Example with caption:
+Example slideshow:
 
 ```html
-<img class="case-img-full" src="../assets/img/screen.png" alt="Description">
-<div class="case-caption">Caption text under the image</div>
+<div class="case-slideshow-wrap" data-slideshow>
+  <div class="case-slideshow">
+    <div class="case-slideshow-track">
+      <img src="slide-1.png" alt="Slide 1">
+      <img src="slide-2.png" alt="Slide 2">
+    </div>
+    <div class="case-slideshow-nav">
+      <span class="case-slideshow-counter" data-counter>1/2</span>
+    </div>
+  </div>
+  <button class="case-slideshow-arrow" data-prev>&#x2039;</button>
+  <button class="case-slideshow-arrow" data-next>&#x203A;</button>
+</div>
 ```
 
-Example quote:
+Example tabs:
 
 ```html
-<blockquote class="case-quote">
-  "Quote text here."
-  <cite>— Author Name, Role</cite>
-</blockquote>
+<div class="case-tabs" role="tablist">
+  <button class="case-tab active" data-tab="design" role="tab" aria-selected="true">Design</button>
+  <button class="case-tab" data-tab="dev" role="tab" aria-selected="false">Development</button>
+</div>
+<div class="case-tab-panel active" data-panel="design" role="tabpanel">
+  <!-- Design content -->
+</div>
+<div class="case-tab-panel" data-panel="dev" role="tabpanel">
+  <!-- Dev content -->
+</div>
+```
+
+Example mac mockup:
+
+```html
+<div class="mac-mockup">
+  <div class="mac-mockup-titlebar">
+    <div class="mac-mockup-dots">
+      <span class="mac-mockup-dot mac-mockup-dot--close"></span>
+      <span class="mac-mockup-dot mac-mockup-dot--minimize"></span>
+      <span class="mac-mockup-dot mac-mockup-dot--maximize"></span>
+    </div>
+    <span class="mac-mockup-url">example.com</span>
+  </div>
+  <div class="mac-mockup-viewport">
+    <img src="screenshot.png" alt="Website">
+  </div>
+</div>
 ```
 
 ### Spacing
@@ -268,7 +315,7 @@ HTML files load `.min.css` and `.min.js` — always rebuild after changes.
 - 12-column grid, 1156px max width, 20px column gap
 - Side padding: 48px (desktop), 24px (tablet/mobile)
 - Text column: 764px centered
-- Breakpoints: 900px (tablet), 480px (mobile)
+- Breakpoints: 1000px (tablet), 600px (compact), 480px (mobile)
 - Press `Shift+G` in the browser to visualize the grid
 
 ## Contact Form

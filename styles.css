@@ -853,8 +853,19 @@ picture.case-img-full {
 .case-body > .case-img-full + .case-caption,
 .case-tab-panel > .case-img-full + .case-caption,
 .case-body > .case-img-scroll + .case-caption,
-.case-tab-panel > .case-img-scroll + .case-caption {
+.case-tab-panel > .case-img-scroll + .case-caption,
+.case-body > .mac-mockup + .case-caption,
+.case-tab-panel > .mac-mockup + .case-caption,
+.case-body > .case-slideshow-wrap + .case-caption,
+.case-tab-panel > .case-slideshow-wrap + .case-caption {
   margin-top: -20px;
+}
+
+.case-body > .case-slideshow-wrap,
+.case-tab-panel > .case-slideshow-wrap {
+  max-width: var(--text-col);
+  margin: 30px auto;
+  padding-left: var(--content-gutter);
 }
 
 .case-body > .case-img-row,

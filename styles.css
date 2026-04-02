@@ -370,7 +370,7 @@ button {
   border-radius: var(--radius-sm);
   object-fit: cover;
   object-position: top center;
-  align-self: center;
+  align-self: start;
   overflow: hidden;
 }
 
@@ -1396,7 +1396,7 @@ html.dark .case-video video:not([data-loaded]) {
 
 /* --- Responsive --- */
 
-@media (max-width: 900px) {
+@media (max-width: 1000px) {
   :root {
     --side-padding: 24px;
   }

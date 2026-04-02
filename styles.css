@@ -1105,6 +1105,27 @@ html.dark .project-item:hover { background: rgba(255, 255, 255, 0.03); }
   .case-description {
     text-indent: 0;
   }
+
+  .about-bottom {
+    position: static;
+    width: 100%;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+    margin-top: 32px;
+    padding: 0;
+    background: none;
+  }
+
+  .about-bottom p {
+    font-size: 18px;
+    line-height: 1.35;
+  }
+
+  .about-links {
+    gap: 20px;
+    flex-wrap: wrap;
+  }
 }
 
 @media (max-width: 480px) {
@@ -1148,19 +1169,8 @@ html.dark .project-item:hover { background: rgba(255, 255, 255, 0.03); }
     justify-content: flex-start;
   }
 
-  .about-bottom {
-    position: static;
-    width: 100%;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 12px;
-    margin-top: 32px;
-    padding: 0;
-  }
-
   .about-links {
     gap: 14px;
-    flex-wrap: wrap;
   }
 
   .about-content p {

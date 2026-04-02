@@ -286,4 +286,4 @@ MIT — use freely for personal and commercial projects.
 
 ---
 
-Built by [Diyor Khakimov](https://diyor.design). Based on a production portfolio serving real clients since 2024.
+Built by [Diyor Khakimov](https://diyor.design).
